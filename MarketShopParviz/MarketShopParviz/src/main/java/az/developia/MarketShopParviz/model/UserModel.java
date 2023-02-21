@@ -1,5 +1,6 @@
 package az.developia.MarketShopParviz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class UserModel {
 	
 	@Id
+	@Column(unique = true)
 	private String username;
 	
 	private String password;
