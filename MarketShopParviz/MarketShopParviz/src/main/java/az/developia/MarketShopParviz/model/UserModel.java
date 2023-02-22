@@ -25,6 +25,8 @@ public class UserModel {
 	
 	@Enumerated(value = EnumType.STRING)
 	private Role role;
+
+	
 	
 	
 	
