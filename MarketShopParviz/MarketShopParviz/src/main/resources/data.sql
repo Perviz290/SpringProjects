@@ -2,32 +2,42 @@
   (username,password,enabled,role)
   values
   ('admin','{noop}admin',1,'admin'),
- ('nicat','{noop}12',1,'cashier');
+  ('oktay96','{noop}1234',1,'manager'),
+  ('camil88','{noop}1234',1,'cashier');
+ 
  
   insert into authorities
   (username,authority) values
   ('admin','admin'),
-  ('nicat','cashier');
+  ('oktay96','manager'),
+  ('camil88','cashier');
+  
 
   
  insert into managers
-(name,surname,username,creator_username,phone_number,mail,birthday)             
+(name,surname,birthday,mail,phone_number,username)             
 values
-('oktay','oktayli','oktay1','1','develop','010-787-25-25','oktay1@mail.com','1995-11-24'),
-('elgiz','elgizli','elgiz1','1','develop','020-878-25-25','elgiz@mail.com','1997-05-13'),
-('camil','camilli','camil1','2','code','030-979-25-25','camil1@mail.com','1993-11-11'),
-('izett','izetli','izet1','2','code','040-585-25-25','izzet1@mail.com','1995-12-11');
+('oktay','oktayli','1995-11-24','oktay1@mail.com','010-787-25-25','oktay96');
+
+insert into cashiers
+(name,surname,birthday,mail,phone_number,username)             
+values
+('camil','camilli','1996-10-20','camilli@mail.com','050-858-25-25','camil88');
+				 
+
+insert into products
+(name,barcode,price,cost,register_date,update_date,quantity,percent,category_id)             
+values
+('paltar','4525368745','45.90','25','2023-01-20','2023-02-20','3','20','1'),
+('ayaqqabi','253645368745','22.00','15','2023-01-20','2023-02-20','3','20','3');
 
 
-
-
-
-
-
-
-
-
-
+insert into category
+(name)             
+values
+('köynək'),
+('şalvar'),
+('ayaqqabi');
 
 
 

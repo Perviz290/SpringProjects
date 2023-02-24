@@ -7,4 +7,6 @@ import az.developia.MarketShopParviz.model.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
 
+	UserModel findByUsername(String username);
+
 }

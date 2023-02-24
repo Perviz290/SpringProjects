@@ -2,13 +2,14 @@ package az.developia.MarketShopParviz.model;
 
 public enum Role {
 	
-	ADMIN("admin"), 
-    CASHIER("cashier");
+	admin("admin"),
+	manager("manager"),
+    cashier("cashier");
 	
 	String role;
 	
 	Role(String role){
 		this.role=role;
 	}
-
+	
 }
