@@ -1,14 +1,14 @@
  insert into users
   (username,password,enabled,role)
   values
-  ('admin','{noop}admin',1,'admin'),
+  ('perviz','{noop}1234',1,'admin'),
   ('oktay96','{noop}1234',1,'manager'),
   ('camil88','{noop}1234',1,'cashier');
  
  
   insert into authorities
   (username,authority) values
-  ('admin','admin'),
+  ('perviz','admin'),
   ('oktay96','manager'),
   ('camil88','cashier');
   

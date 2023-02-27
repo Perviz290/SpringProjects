@@ -68,29 +68,28 @@ public class ProductService {
 	}
 
 	// Edit Product
-	public Product editProduct(editProductDTO edit, Long id) {
-		Optional<Product> byId = productRepository.findById(id);
-		if (byId.isPresent()) {
-			Category category = categoryService.findById(edit.getCategoryId());
-			Product editProduct = byId.get();
-			editProduct.setCategoryId(category.getId());
-			editProduct.setId(id);
-			editProduct.setName(edit.getName());
-			editProduct.setBarcode(edit.getBarcode());
-			editProduct.setPrice(edit.getPrice());
-			editProduct.setCost(edit.getCost());
-			editProduct.setUpdateDate(LocalDate.now());
-			editProduct.setUpdateDate(editProduct.getRegisterDate());
-			editProduct.setQuantity(edit.getQuantity());
-
-			Decimal decimal = new Decimal();
-			BigDecimal editPercent = decimal.findPercent(edit.getPrice(), edit.getCost());
-			editProduct.setPercent(editPercent);
-			productRepository.save(editProduct);
-			return editProduct;
-		} else {
-			throw new IdNotFoundException("-This ID not Found!");
-		}
+	public Product editProduct(editProductDTO edit) {
+		
+		Product edit1=productRepository.findById(edit.getId()).orElseThrow(
+				()->new IdNotFoundException("This ID Not Found"));
+		
+		Category category = categoryService.findById(edit.getCategoryId());
+		edit1.setCategoryId(category.getId());
+		edit1.setId(edit.getId());
+		edit1.setName(edit.getName());
+		edit1.setCategoryId(category.getId());
+		edit1.setBarcode(edit.getBarcode());
+		edit1.setPrice(edit.getPrice());
+		edit1.setCost(edit.getCost());
+		edit1.setUpdateDate(LocalDate.now());	
+		edit1.setQuantity(edit.getQuantity());
+		//edit1.setRegisterDate(edit1.getRegisterDate());
+		Decimal decimal = new Decimal();
+	    BigDecimal editPercent = decimal.findPercent(edit.getPrice(), edit.getCost());
+		edit1.setPercent(editPercent);
+			productRepository.save(edit1);
+		return edit1;	
+		} 
 
 	}
 
@@ -107,4 +106,4 @@ public class ProductService {
 	
 	
 	
-}
+

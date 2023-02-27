@@ -59,10 +59,10 @@ public class ProductRestController {
 	}
 
 	// Edit Product 
-	@PutMapping(path = "/{id}")
+	@PutMapping
 	@PreAuthorize(value = "hasAuthority('admin')")
-	public Product editProduct(@RequestBody editProductDTO edit,Long id ) {
-		return productService.editProduct(edit,id);
+	public Product editProduct(@RequestBody editProductDTO edit) {
+		return productService.editProduct(edit);
 	}
 	
 	
