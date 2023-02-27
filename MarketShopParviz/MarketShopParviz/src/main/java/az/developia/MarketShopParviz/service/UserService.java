@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import az.developia.MarketShopParviz.RequestDTO.SaveUserRequest;
+import az.developia.MarketShopParviz.RequestDTO.disableUserDTO;
+import az.developia.MarketShopParviz.RequestDTO.editUserDTO;
+import az.developia.MarketShopParviz.editdto.editProductDTO;
 import az.developia.MarketShopParviz.exception.EnumNotFoundException;
 import az.developia.MarketShopParviz.exception.IdNotFoundException;
 import az.developia.MarketShopParviz.exception.UsernameAlreadyDefinedException;
@@ -69,10 +72,42 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-
 	//findAllUser
 	public List<UserModel> getAllUser() {
 		return userRepository.findAll();
+	}
+
+	// User Disable and Enable 
+	public UserModel disableUser(disableUserDTO disable) {
+		
+		UserModel username = userRepository.findByUsername(disable.getUser());
+		if (username==null) {
+			throw new UsernameAlreadyDefinedException
+			(disable.getUser()+"-This username does not exist");
+		}
+		if (disable.getEnable()==true) {
+			username.setEnabled(true);
+		}
+		else if (disable.getEnable()==false) {
+			username.setEnabled(false);
+		}
+		else {
+			throw new RuntimeException("null");
+		}
+		return userRepository.save(username);
+	}
+
+
+	// user edit only password
+	public UserModel editUser(editUserDTO edit) {
+		UserModel username = userRepository.findByUsername(edit.getUser());
+		if (username==null) {
+			throw new UsernameAlreadyDefinedException
+			(edit.getUser()+"-This username does not exist");
+		}
+		username.setPassword(encoder.encode(edit.getPassword()));
+		UserModel editModel= userRepository.save(username);
+		return editModel ;
 	}
 
 

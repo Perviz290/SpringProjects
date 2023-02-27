@@ -1,16 +1,24 @@
 package az.developia.MarketShopParviz.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import az.developia.MarketShopParviz.exception.UsernameAlreadyDefinedException;
 import az.developia.MarketShopParviz.model.AuthorityModel;
+import az.developia.MarketShopParviz.model.UserModel;
 import az.developia.MarketShopParviz.repository.AuthorityRepository;
+import az.developia.MarketShopParviz.repository.UserRepository;
 
 @Service
 public class AuthorityService {
 	
 	@Autowired
 	private AuthorityRepository aRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	//creat Authority
 	public void creatAuthority(String username,String role) {
@@ -18,6 +26,19 @@ public class AuthorityService {
 		model.setAuthority(role);
 		model.setUsername(username);
 		aRepository.save(model);
+	}
+
+	
+	// username gore ona mensub olan huquqlari getirmek
+	public List<AuthorityModel> getAllAuthorityByUsername(String username) {
+		
+		UserModel findedUser = userRepository.findByUsername(username);
+		if (findedUser==null) {
+			throw new UsernameAlreadyDefinedException(username+"-Username is null");
+		}
+			List<AuthorityModel> list =aRepository.findAllByUsername(username);
+			
+			return list;
 	}
 	
 	

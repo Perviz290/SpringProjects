@@ -9,5 +9,4 @@ public class MarketShopParvizApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MarketShopParvizApplication.class, args);
 	}
-
 }
