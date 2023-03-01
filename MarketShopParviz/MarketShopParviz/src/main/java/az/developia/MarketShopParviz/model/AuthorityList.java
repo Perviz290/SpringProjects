@@ -2,9 +2,8 @@ package az.developia.MarketShopParviz.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,28 +16,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "authoritylist")
 @Data
 @NoArgsConstructor
-public class UserModel {
+public class AuthorityList {
 	
 	@Id
-	private String username;
+	private String authority;
 	
-	private String password;
-	
-	private Boolean enabled;
-	
-	@Enumerated(value = EnumType.STRING)
-	private Role role;
+	private String description;
 	
 	
 	//@ManyToMany
 	//@JoinTable(name = "authorities",
-	//joinColumns = @JoinColumn(name="username"),
-	//inverseJoinColumns = @JoinColumn(name="authority"))
-	//@JsonIgnoreProperties(value = "users")
-	//List<AuthorityList>authoritylist;
+	//joinColumns = @JoinColumn(name="authority"),
+	//inverseJoinColumns = @JoinColumn(name="username"))
+	//@JsonIgnoreProperties(value = "authoritylist")
+	//List<UserModel>users;
 	
 	
+
 }

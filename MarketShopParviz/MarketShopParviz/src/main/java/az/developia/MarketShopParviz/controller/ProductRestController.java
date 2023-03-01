@@ -25,42 +25,42 @@ public class ProductRestController {
 
 	// Save Product with category
 	@PostMapping
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('save:product')")
 	public void saveProduct(@RequestBody SaveProductRequest save) {
 		productService.save(save);
 	}
 
 	// Get All Product
 	@GetMapping
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('get:all:product')")
 	public List<Product> getAllProduct() {
 		return productService.findAll();
 	}
 
 	// Get All Product with CategoryId
 	@GetMapping(path = "/categoryId/{categoryId}")
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('getallproduct:bycategoryid')")
 	public List<Product> getAllProductByCategoryId(@PathVariable Integer categoryId) {
 		return productService.getAllProductByCategoryId(categoryId);
 	}
 
 	// Get One Product
 	@GetMapping(path = "/{id}")
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('getone:product')")
 	public Product getOneProduct(@PathVariable Long id) {
 		return productService.findById(id);
 	}
 
 	// Delete By ProductId
 	@DeleteMapping(path = "/{id}")
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('delete:product')")
 	public void deleteProduct(@PathVariable Long id) {
 		productService.deleteProduct(id);
 	}
 
 	// Edit Product 
 	@PutMapping
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('edit:product')")
 	public Product editProduct(@RequestBody editProductDTO edit) {
 		return productService.editProduct(edit);
 	}

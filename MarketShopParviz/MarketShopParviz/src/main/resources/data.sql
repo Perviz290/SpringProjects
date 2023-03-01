@@ -8,11 +8,25 @@
   insert into authorities
   (username,authority) values
   ('perviz','admin'),
-  ('perviz','find:by:id'),
-  ('perviz','get:all'),
-  ('perviz','delete:by:category'),
+  ('perviz','get:all:product'),
+  ('perviz','getallproduct:bycategoryid'),
+  ('perviz','getone:product'),
   ('oktay96','manager'),
   ('camil88','cashier');
+  
+   insert into authoritylist
+  (authority,description) values
+  ('admin','adminlik hüququ'),
+  ('manager','menecerlik hüququ'),
+  ('cashier','cassirlik hüququ'),
+  ('save:product','mehsul qeydiyati'),
+  ('get:all:product','butun mehsullari gormek'),
+  ('getallproduct:bycategoryid','category ile butun mehsullari gormek'),
+  ('getone:product','secilen mehsulu gormek'),
+  ('edit:product','secilen mehsulu redakte etmek'),
+  ('delete:product','secilen mehsulu silmek'),
+  ('edituser:password','yalniz parolu deyismek');
+   
    
  insert into managers
 (name,surname,birthday,mail,phone_number,username)             

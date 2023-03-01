@@ -50,7 +50,7 @@ public class UserRestController {
 	
 	// user update only password
 	@PutMapping
-	@PreAuthorize(value = "hasAuthority('admin')")
+	@PreAuthorize(value = "hasAuthority('edituser:password')")
 	public UserModel editUser(@RequestBody editUserDTO edit) {
 		return userService.editUser(edit);
 	}	
