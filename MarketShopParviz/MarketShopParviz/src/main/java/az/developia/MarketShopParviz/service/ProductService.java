@@ -25,6 +25,10 @@ public class ProductService {
 	// save Product
 	public void save(SaveProductRequest save) {
 		Category id = categoryService.findById(save.getCategoryId());
+		Product findBarcode=productRepository.findByBarcode(save.getBarcode());
+		if (findBarcode!=null) {
+			throw new RuntimeException("------------");
+		}
 		Product product = new Product();
 		product.setName(save.getName());
 		product.setBarcode(save.getBarcode());
@@ -38,7 +42,8 @@ public class ProductService {
 		BigDecimal findPercent = decimal.findPercent(save.getPrice(), save.getCost());
 		product.setPercent(findPercent);
 		productRepository.save(product);
-	}
+		}
+		
 
 	// Get All Product
 	public List<Product> findAll() {

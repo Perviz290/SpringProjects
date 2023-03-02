@@ -11,6 +11,7 @@
   ('perviz','get:all:product'),
   ('perviz','getallproduct:bycategoryid'),
   ('perviz','getone:product'),
+  ('perviz','save:product'),
   ('oktay96','manager'),
   ('camil88','cashier');
   
@@ -25,9 +26,11 @@
   ('getone:product','secilen mehsulu gormek'),
   ('edit:product','secilen mehsulu redakte etmek'),
   ('delete:product','secilen mehsulu silmek'),
-  ('edituser:password','yalniz parolu deyismek');
-   
-   
+  ('edituser:password','yalniz parolu deyismek'),
+  ('save:sale','barcoda gore satis save etmek'),
+
+  
+      
  insert into managers
 (name,surname,birthday,mail,phone_number,username)             
 values
@@ -43,6 +46,12 @@ insert into products
 values
 ('paltar','4525368745','45.90','25','2023-01-20','2023-02-20','3','20','1'),
 ('ayaqqabi','253645368745','22.00','15','2023-01-20','2023-02-20','3','20','3');
+
+insert into sales
+(name,barcode,price,cost,sale_date,quantity,percent,category_id)             
+values
+('paltar','4525368745','45.90','25','2023-01-20','2','20','1'),
+('ayaqqabi','253645368745','22.00','15','2023-01-20','3','20','3');
 
 insert into category
 (name)             
