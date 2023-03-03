@@ -25,11 +25,12 @@ public class Sale {
 	private String barcode;
 	private Double price;
 	private Double cost;
-	private LocalDate sale_date;
+	private LocalDate saleDate;
 	private Integer quantity;
 	private BigDecimal percent;
 	private Integer categoryId;       	
-	
+	private String creatorUsername;
+
 	
 	
 	

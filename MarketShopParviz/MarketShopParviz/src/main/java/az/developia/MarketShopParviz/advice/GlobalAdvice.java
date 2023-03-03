@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import az.developia.MarketShopParviz.exception.EnumNotFoundException;
 import az.developia.MarketShopParviz.exception.ErrorResponse;
 import az.developia.MarketShopParviz.exception.IdNotFoundException;
+import az.developia.MarketShopParviz.exception.NotFoundException;
 import az.developia.MarketShopParviz.exception.UsernameAlreadyDefinedException;
 
 @RestControllerAdvice
@@ -42,8 +43,12 @@ public class GlobalAdvice {
 	
 	
 	
-	
-	
+
+	@ExceptionHandler
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public String handleNotFoundException(NotFoundException exception) {
+		return exception.getMessage();
+	}
 	
 	
 	

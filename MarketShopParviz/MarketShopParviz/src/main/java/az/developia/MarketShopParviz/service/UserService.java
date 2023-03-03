@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import az.developia.MarketShopParviz.RequestDTO.SaveUserRequest;
@@ -28,6 +29,10 @@ public class UserService {
 	private ManagerService managerService;
 	@Autowired
 	private AuthorityService authorityService;
+	
+	private String getUser() {
+		return SecurityContextHolder.getContext().getAuthentication().getName();
+	}
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -111,7 +116,11 @@ public class UserService {
 	}
 
 
-	
+	// login olan user e gore 	
+	public UserModel findUser() {
+		UserModel username = userRepository.findByUsername(getUser());
+		return username;
+	}
 	
 	
 	

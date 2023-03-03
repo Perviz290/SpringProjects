@@ -4,12 +4,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import javax.management.RuntimeErrorException;
+import javax.naming.NameNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import az.developia.MarketShopParviz.RequestDTO.SaveProductRequest;
 import az.developia.MarketShopParviz.bean.Decimal;
 import az.developia.MarketShopParviz.editdto.editProductDTO;
 import az.developia.MarketShopParviz.exception.IdNotFoundException;
+import az.developia.MarketShopParviz.exception.NotFoundException;
 import az.developia.MarketShopParviz.model.Category;
 import az.developia.MarketShopParviz.model.Product;
 import az.developia.MarketShopParviz.repository.ProductRepository;
@@ -21,6 +27,7 @@ public class ProductService {
 	private ProductRepository productRepository;
 	@Autowired
 	private CategoryService categoryService;
+
 
 	// save Product
 	public void save(SaveProductRequest save) {
@@ -95,6 +102,36 @@ public class ProductService {
 			productRepository.save(edit1);
 		return edit1;	
 		} 
+	
+	
+	public Product findBarcode(String barcode) {
+		Product byBarcode = productRepository.findByBarcode(barcode);
+		if (byBarcode==null) {
+			throw new NotFoundException("Barcode is Null");
+		}
+		return byBarcode;
+	}
+	
+	
+	
+	public void countQuantity(Integer quantity,Product product) {
+		if (product.getQuantity()>=quantity) {
+			Integer count =product.getQuantity()-quantity;
+				if (count==0) {
+				productRepository.deleteById(product.getId());
+			}else{
+				product.setQuantity(count);
+				}
+		}else {
+			throw new NumberFormatException();
+		}	
+	}
+	
+	
+	
+	
+	
+	
 
 	}
 

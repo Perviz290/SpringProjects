@@ -3,6 +3,7 @@
   values
   ('perviz','{noop}1234',1,'admin'),
   ('oktay96','{noop}1234',1,'manager'),
+   ('ehsan15','{noop}1234',1,'cashier'),
   ('camil88','{noop}1234',1,'cashier');
  
   insert into authorities
@@ -13,7 +14,11 @@
   ('perviz','getone:product'),
   ('perviz','save:product'),
   ('oktay96','manager'),
-  ('camil88','cashier');
+  ('ehsan15','cashier'),
+  ('camil88','cashier'),
+  ('ehsan15','save:sale'),
+  ('camil88','save:sale');
+  
   
    insert into authoritylist
   (authority,description) values
@@ -27,10 +32,8 @@
   ('edit:product','secilen mehsulu redakte etmek'),
   ('delete:product','secilen mehsulu silmek'),
   ('edituser:password','yalniz parolu deyismek'),
-  ('save:sale','barcoda gore satis save etmek'),
-
-  
-      
+  ('save:sale','barcoda gore satis save etmek');
+     
  insert into managers
 (name,surname,birthday,mail,phone_number,username)             
 values
@@ -48,10 +51,10 @@ values
 ('ayaqqabi','253645368745','22.00','15','2023-01-20','2023-02-20','3','20','3');
 
 insert into sales
-(name,barcode,price,cost,sale_date,quantity,percent,category_id)             
+(name,barcode,creator_username,price,cost,sale_date,quantity,percent,category_id)             
 values
-('paltar','4525368745','45.90','25','2023-01-20','2','20','1'),
-('ayaqqabi','253645368745','22.00','15','2023-01-20','3','20','3');
+('paltar','4525368745','ehsan15','45.90','25','2023-01-20','2','20','1'),
+('ayaqqabi','253645368745','camil88','22.00','15','2023-01-20','3','20','3');
 
 insert into category
 (name)             
